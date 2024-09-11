@@ -2,7 +2,7 @@
 
 This module is used to create a VPC along with the necessary configuration to be useful. It was
 previously published at
-https://github.com/silinternational/terraform-modules/aws/vpc.
+https://github.com/silinternational/terraform-modules/tree/main/aws/vpc.
 
 ## What this does
 
@@ -17,13 +17,11 @@ This module is published in [Terraform Registry](https://registry.terraform.io/m
 
 ## Usage Example
 
-TODO: Update the following as a simple, brief representative sample of the module:
-
 ```hcl
 module "this" {
-    source = "github.com/silinternational/terraform-modules//aws/vpc"
-    app_name = var.app_name
-    aws_zones = var.aws_zones
+  source = "github.com/silinternational/terraform-modules//aws/vpc"
+  app_name = var.app_name
+  aws_zones = var.aws_zones
 }
 
 provider "aws" {
