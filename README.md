@@ -1,12 +1,19 @@
-# Terraform module for ...
+# Terraform module for AWS VPC
 
-TODO: First https://developer.hashicorp.com/terraform/registry/modules/publish if you have never developed a publishable Terraform module. Then follow those requirements when creating your new module.
+This module is used to create a VPC along with the necessary configuration to be useful. It was
+previously published at
+https://github.com/silinternational/terraform-modules/aws/vpc.
 
-This module ... 
+## What this does
 
-TODO: Change the path in this link:
+- Create VPC named after `app_name` and `app_env`
+- Create public and private subnets for each `aws_zones` specified
+- Provision a Internet Gateway and configure public subnets to route through it
+- Provision a NAT Gateway (or use an existing Transit Gateway) and configure private subnets to route through it
+- Create a DB subnet group including all private subnets
+- Optionally allocate IPv6 CIDR blocks, egress-only internet gateway, and default IPv6 routes
 
-This module is published in [Terraform Registry](https://registry.terraform.io/modules/silinternational/module-name/provider-name/latest).
+This module is published in [Terraform Registry](https://registry.terraform.io/modules/silinternational/vpc/aws/latest).
 
 ## Usage Example
 
@@ -14,20 +21,12 @@ TODO: Update the following as a simple, brief representative sample of the modul
 
 ```hcl
 module "this" {
-  source = "silinternational/module-name/aws"
-  version = "0.1.0"
-  
-  variable_name = "my variable value"
+    source = "github.com/silinternational/terraform-modules//aws/vpc"
+    app_name = var.app_name
+    aws_zones = var.aws_zones
 }
 
 provider "aws" {
   region = "us-east-1"
 }
 ```
-
-## Working Example
-
-TODO: Update or remove this section:
-
-A working [example](https://github.com/silinternational/terraform-module-name/tree/main/example) usage of this module is included in the source repository.
-
