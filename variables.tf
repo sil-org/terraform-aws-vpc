@@ -2,19 +2,20 @@
  * Required variables
  */
 variable "app_name" {
-  type    = string
-  default = "terraform"
+  description = "Application name, used with app_env to create resource names"
+  type        = string
+  default     = "terraform"
 }
 
 variable "app_env" {
-  type    = string
-  default = "testing"
+  description = "Application environment, used with app_name to create resource names"
+  type        = string
+  default     = "testing"
 }
 
 variable "aws_zones" {
   description = "A list of zones to create subnets (max 8)"
   type        = list(string)
-
   default = [
     "us-east-1c",
     "us-east-1d",
@@ -23,8 +24,9 @@ variable "aws_zones" {
 }
 
 variable "enable_dns_hostnames" {
-  type    = bool
-  default = false
+  description = "A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false."
+  type        = bool
+  default     = false
 }
 
 variable "create_nat_gateway" {
