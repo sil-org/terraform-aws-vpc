@@ -20,7 +20,7 @@ This module is published in [Terraform Registry](https://registry.terraform.io/m
 ```hcl
 module "this" {
   source  = "silinternational/vpc/aws"
-  version = "1.0.1" // this may not reflect the latest version available
+  version = "~> 1.0" // this may not reflect the latest version available
 
   app_name  = var.app_name
   aws_zones = var.aws_zones
