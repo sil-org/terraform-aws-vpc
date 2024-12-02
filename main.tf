@@ -32,28 +32,30 @@ locals {
 }
 
 resource "aws_subnet" "public_subnet" {
-  count             = length(var.aws_zones)
+  count = length(var.aws_zones)
+
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = element(var.aws_zones, count.index)
-  cidr_block        = element(var.public_subnet_cidr_blocks, count.index)
-  ipv6_cidr_block   = var.enable_ipv6 ? element(local.public_subnets, count.index) : null
+  availability_zone = var.aws_zones[count.index]
+  cidr_block        = var.public_subnet_cidr_blocks[count.index]
+  ipv6_cidr_block   = var.enable_ipv6 ? local.public_subnets[count.index] : null
 
   tags = {
-    Name     = "public-${element(var.aws_zones, count.index)}"
+    Name     = "${var.app_name}-${var.app_env}-public-${element(var.aws_zones, count.index)}"
     app_name = var.app_name
     app_env  = var.app_env
   }
 }
 
 resource "aws_subnet" "private_subnet" {
-  count             = length(var.aws_zones)
+  count = length(var.aws_zones)
+
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = element(var.aws_zones, count.index)
-  cidr_block        = element(var.private_subnet_cidr_blocks, count.index)
-  ipv6_cidr_block   = var.enable_ipv6 ? element(local.private_subnets, count.index) : null
+  availability_zone = var.aws_zones[count.index]
+  cidr_block        = var.private_subnet_cidr_blocks[count.index]
+  ipv6_cidr_block   = var.enable_ipv6 ? local.private_subnets[count.index] : null
 
   tags = {
-    Name     = "private-${element(var.aws_zones, count.index)}"
+    Name     = "${var.app_name}-${var.app_env}-private-${element(var.aws_zones, count.index)}"
     app_name = var.app_name
     app_env  = var.app_env
   }
@@ -232,4 +234,3 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     app_env  = var.app_env
   }
 }
-
