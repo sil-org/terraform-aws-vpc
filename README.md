@@ -2,7 +2,7 @@
 
 This module is used to create a VPC along with the necessary configuration to be useful. It was
 previously published at
-https://github.com/silinternational/terraform-modules/tree/main/aws/vpc.
+https://github.com/sil-org/terraform-modules/tree/main/aws/vpc.
 
 ## What this does
 
@@ -13,13 +13,13 @@ https://github.com/silinternational/terraform-modules/tree/main/aws/vpc.
 - Create a DB subnet group including all private subnets
 - Optionally allocate IPv6 CIDR blocks, egress-only internet gateway, and default IPv6 routes
 
-This module is published in [Terraform Registry](https://registry.terraform.io/modules/silinternational/vpc/aws/latest).
+This module is published in [Terraform Registry](https://registry.terraform.io/modules/sil-org/vpc/aws/latest).
 
 ## Usage Example
 
 ```hcl
 module "this" {
-  source  = "silinternational/vpc/aws"
+  source  = "sil-org/vpc/aws"
   version = "~> 1.0" // this may not reflect the latest version available
 
   app_name  = var.app_name
